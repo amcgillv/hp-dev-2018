@@ -67,11 +67,14 @@ class Spell
   # which start with the same first letter as the spell's name
   # Tests: `bundle exec rspec -t letter .`
   def names_with_same_first_letter
-    #['write this method']
-    toReturn = Array.new [@name]
-    for s in Spell.data
-      if @name.chars[0].eql?(s["Spell(Lower)"].chars[0])
-        toReturn.push(s["Spell(Lower)"])
+    
+    toReturn = Array.new []
+    if @name.length > 0
+      for s in Spell.data
+        if s["Spell(Lower)"].start_with?(@name.chars[0])
+         
+          toReturn.push(s["Spell(Lower)"])
+        end
       end
     end
     toReturn
